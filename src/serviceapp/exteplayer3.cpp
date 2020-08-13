@@ -161,6 +161,12 @@ std::vector<std::string> ExtEplayer3::buildCommand()
 			continue;
 		headersStr +=  i->first + ":" + i->second + "\r\n";
 	}
+	std::map<std::string,std::string>::const_iterator i(mHeaders.find("AudioTrackID"));
+	if (i != mHeaders.end())
+	{
+		args.push_back("-t");
+		args.push_back(i->second);
+	}
 	if (!headersStr.empty())
 	{
 		args.push_back("-h");
